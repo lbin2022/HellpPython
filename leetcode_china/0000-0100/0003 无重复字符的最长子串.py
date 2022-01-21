@@ -26,7 +26,7 @@ class Solution:
                     if len(str_result) < len(str_cur) <= result_max:
                         str_result = str_cur
                 else:
-                    str_cur = str_cur[1:] + s[i]
+                    str_cur = str_cur[str_cur.find(s[i])+1:] + s[i]
         return len(str_result)
 
     @staticmethod
