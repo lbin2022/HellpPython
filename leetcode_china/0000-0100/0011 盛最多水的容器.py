@@ -8,6 +8,9 @@
     链接：https://leetcode-cn.com/problems/container-with-most-water
     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 """
+from typing import List
+
+
 class Solution:
     def maxArea(height: List[int]) -> int:
         """ 暴力枚举　"""
@@ -20,4 +23,15 @@ class Solution:
                 new = (j - i) * min(height[i], height[j])
                 if res < new:
                     res = new
+        return res
+
+    def maxArea2(height: List[int]) -> int:
+        """ 双指针，短边内移　"""
+        left, right, res = 0, len(height), 0
+        while left < right:
+            res = max(res, (right - left) * min(height[right], height[left]))
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right += 1
         return res
